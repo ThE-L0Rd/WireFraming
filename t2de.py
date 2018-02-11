@@ -7,11 +7,13 @@ def requestPapers(amount,request):
     #to use it in the loop underneath
     validPaperIndex = 0
     #So make sure the value of the paper that will come out from Atm
-    if request >=50 and request <=99 :
+    if request >=100 :
+        validPaperIndex = validPaperIndex
+    elif request >=50 :
         validPaperIndex = 1
-    elif request >=10 and request <=49 :
+    elif request >=10:
         validPaperIndex = 2
-    elif request >=5 and request <=9 :
+    elif request >=5:
         validPaperIndex = 3
     while request >= 5:
 
