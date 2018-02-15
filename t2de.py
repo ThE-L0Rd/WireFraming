@@ -1,52 +1,61 @@
-def requestPapers(amount,request):
-    #Until he deduct the amount to be withdrawn from the card
-    delete = request
-    giveString = 'give :'
-    #List of valid papers
-    validPapers = [100, 50, 10, 5]
-    #to use it in the loop underneath
-    validPaperIndex = 0
-    #So make sure the value of the paper that will come out from Atm
-    if request >=100 :
-        validPaperIndex = validPaperIndex
-    elif request >=50 :
-        validPaperIndex = 1
-    elif request >=10:
-        validPaperIndex = 2
-    elif request >=5:
-        validPaperIndex = 3
-    while request >= 5:
+class ATM:
+    def __init__(self, balance, bank_name):
+        self.balance = balance
+        self.bank_name = bank_name
+    def withdraw( self, request):
+        #A comma between the parts
+        comma ="+----------------------+"
+        print "Welcome to " + self.bank_name
+        print "Current balance = " + str(self.balance)
+        print comma
+        if self.balance < request :
+            print "you don't have enough money!"
+            return
 
-        while request >= validPapers[validPaperIndex]:
-            print(giveString + str(validPapers[validPaperIndex]))
-            #The amount is deducted from the request in each cash-out process
-            request -= validPapers[validPaperIndex]
-        #To reduce the value of the papers that will be drawn until the balance ends
-        validPaperIndex += 1
-    #To extract the rest of the required amount
-    if request !=0 :
-        print (giveString + str(request))
+        elif self.balance == 0 :
+            print "pleas enter valid request "
+            return
+        else :
+            #Until he deduct the amount to be withdrawn from the card
+            delete = request
+            giveString = 'give :'
+            #List of valid papers
+            validPapers = [100, 50, 10, 5]
+            #to use it in the loop underneath
+            validPaperIndex = 0
+            #So make sure the value of the paper that will come out from Atm
+            if request >=100 :
+                validPaperIndex = validPaperIndex
+            elif request >=50 :
+                validPaperIndex = 1
+            elif request >=10:
+                validPaperIndex = 2
+            elif request >=5:
+                validPaperIndex = 3
+            while request >= 5:
 
-    print  amount - delete
-    return amount - delete
+                while request >= validPapers[validPaperIndex]:
+                    print(giveString + str(validPapers[validPaperIndex]))
+                    #The amount is deducted from the request in each cash-out process
+                    request -= validPapers[validPaperIndex]
+                #To reduce the value of the papers that will be drawn until the balance ends
+                validPaperIndex += 1
+            #To extract the rest of the required amount
+            if request !=0 :
+                print (giveString + str(request))
 
-def chack(amount,request):
+            self.balance -=delete
+            print self.balance
+            print comma
 
-    if amount < request :
-        print "you don't have enough money!"
-        return
+balance1 = 500
+balance2 = 1000
 
-    elif request == 0 :
-        print "pleas enter valid request "
-        return
+atm1 = ATM(balance1, "Smart Bank")
+atm2 = ATM(balance2, "Baraka Bank")
 
-    else :
-        return requestPapers(amount,request)
+atm1.withdraw(277)
+atm1.withdraw(800)
 
-
-balance = 500
-balance = chack(balance,277)
-balance = chack(balance, 30)
-balance = chack(balance, 5)
-balance = chack(balance, 500)
-
+atm2.withdraw(100)
+atm2.withdraw(2000)
